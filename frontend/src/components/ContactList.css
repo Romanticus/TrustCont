@@ -11,6 +11,9 @@
 
 .contact-list-container{
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .search-container{ 
@@ -38,7 +41,6 @@ margin-bottom: 20px;}
     grid-template-columns: 1fr;
     gap: 12px;
     width:80%;
-   margin: 0 auto;
-
+  
   }
 }
