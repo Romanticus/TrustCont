@@ -3,7 +3,6 @@
   margin: 0 auto;
   padding: 20px;
   display: flex;
-  flex-wrap: wrap;
   gap:20px;
 }
 
@@ -35,3 +34,11 @@
     align-items: stretch;
   }
 } */
+
+@media (max-width: 950px) {
+  .contacts-page {
+    justify-content: center;
+  flex-wrap: wrap;
+  
+  }
+} 

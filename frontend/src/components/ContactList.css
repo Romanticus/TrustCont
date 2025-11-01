@@ -6,6 +6,7 @@
   max-height: 700px;
   overflow: hidden;
   overflow-y: scroll;
+  width: 50vw;
 }
 
 .no-contacts {
@@ -15,9 +16,10 @@
   padding: 40px;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 950px) {
   .contact-list {
     grid-template-columns: 1fr;
     gap: 12px;
+    width:80%;
   }
 }

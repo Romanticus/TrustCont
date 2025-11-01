@@ -1,23 +1,28 @@
 import type { Contact } from './contactsSlice';
 
 const API_BASE = 'http://localhost:3000/api';
-const API_KEY = 'test-api-key-123'; 
+const API_KEY = 'test-api-key-123';  
 
-// Базовые заголовки необходимые для раоты с апи
+//  заголовки для работы с АПИ
 const getHeaders = () => ({
   'x-api-key': API_KEY,
   'Content-Type': 'application/json',
 });
 
-// обработчик ошибок
+// Обработчик ошибок с сервера
 const handleApiError = async (response: Response): Promise<never> => {
-  const errorData = await response.json();
-  const errorMessage = errorData.message 
-    ? Array.isArray(errorData.message) 
-      ? errorData.message.join(', ')
-      : errorData.message
-    : `Error: ${response.status}`;
-  throw new Error(errorMessage);
+  try {
+    const errorData = await response.json();
+    const errorMessage = errorData.message 
+      ? Array.isArray(errorData.message) 
+        ? errorData.message.join(', ')
+        : errorData.message
+      : `Error: ${response.status}`;
+    throw new Error(errorMessage);
+  } catch (e) {
+    // если не можем обработать, выбрасываем код ошибки
+    throw new Error(`Error: ${response.status}`);
+  }
 };
 
 export const contactsApi = {
