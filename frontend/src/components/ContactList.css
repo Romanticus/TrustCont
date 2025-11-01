@@ -1,0 +1,23 @@
+.contact-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+  max-height: 700px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.no-contacts {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  padding: 40px;
+}
+
+@media (max-width: 480px) {
+  .contact-list {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
