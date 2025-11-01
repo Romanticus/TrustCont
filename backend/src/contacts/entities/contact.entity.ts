@@ -22,6 +22,6 @@ export class Contact {
   @Column({ type: 'json', nullable: true })
   tags?: string[];
 
-  @UpdateDateColumn()
+  @Column({ type: 'timestamp' }) 
   lastInteraction?: Date;
 }
