@@ -20,7 +20,7 @@ margin-bottom: 20px;}
 {
   padding: 10px;
   color: #000;
-  background-color: rgb(255, 253, 127);
+  background-color:  #fff;
 }
 .search-input:focus{
   outline: none;
