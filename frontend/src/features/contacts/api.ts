@@ -1,7 +1,9 @@
 import type { Contact } from './contactsSlice';
 
-const API_BASE = 'http://localhost:3000/api';
-const API_KEY = 'test-api-key-123';  
+const API_BASE =import.meta.env.VITE_API_BASE || 'http://localhost:3000/api';
+const API_KEY = import.meta.env.VITE_API_KEY;  
+ console.log(import.meta.env);
+ 
 
 //  заголовки для работы с АПИ
 const getHeaders = () => ({
