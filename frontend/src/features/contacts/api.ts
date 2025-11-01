@@ -19,7 +19,7 @@ const handleApiError = async (response: Response): Promise<never> => {
         : errorData.message
       : `Error: ${response.status}`;
     throw new Error(errorMessage);
-  } catch (e) {
+  } catch (err) {
     // если не можем обработать, выбрасываем код ошибки
     throw new Error(`Error: ${response.status}`);
   }
