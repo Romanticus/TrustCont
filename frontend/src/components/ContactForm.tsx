@@ -11,7 +11,8 @@ const ContactForm: React.FC = () => {
     name: '',
     phone: '',
     email: '',
-    tags: ''
+    tags: '',
+    lastInteraction: new Date().toISOString()
   });
   const [error, setError] = useState<string | null>(null);
 
@@ -38,7 +39,8 @@ const ContactForm: React.FC = () => {
         name: formData.name,
         phone: formData.phone,
         email: formData.email,
-        tags
+        tags,
+        lastInteraction: formData.lastInteraction
       };
       
       const newContact = await contactsApi.createContact(newContactData);
@@ -51,7 +53,8 @@ const ContactForm: React.FC = () => {
         name: '',
         phone: '',
         email: '',
-        tags: ''
+        tags: '',
+        lastInteraction: new Date().toISOString()
       });
       
     } catch (err) {
@@ -116,6 +119,21 @@ const ContactForm: React.FC = () => {
           placeholder="Теги (Разделение запятой, Необязательны)"
           value={formData.tags}
           onChange={handleChange}
+          disabled={isAdding}
+        />
+      </div>
+      
+      <div className="form-group">
+        <label htmlFor="lastInteraction">Последнее взаимодействие:</label>
+        <input
+          type="datetime-local"
+          id="lastInteraction"
+          name="Последнее взаимодействие"
+          value={formData.lastInteraction.slice(0, 16)} // 
+          onChange={(e) => setFormData({
+            ...formData,
+            lastInteraction: new Date(e.target.value).toISOString()
+          })}
           disabled={isAdding}
         />
       </div>

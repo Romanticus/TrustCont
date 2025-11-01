@@ -1,4 +1,4 @@
-import { IsDate, IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsDate, IsDateString, IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class CreateContactDto {
   @IsNotEmpty()
@@ -18,6 +18,6 @@ export class CreateContactDto {
   tags?: string[];
 
   @IsOptional()
-  @IsDate()
+  @IsDateString()
   lastInteraction?: Date;
 }

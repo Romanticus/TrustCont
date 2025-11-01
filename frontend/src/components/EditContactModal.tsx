@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import type { Contact } from '../features/contacts/contactsSlice';
+
 import { contactsApi } from '../features/contacts/api';
 import { useAppDispatch } from '../hooks';
-import { updateContactSuccess } from '../features/contacts/contactsSlice';
+import { updateContactSuccess, type Contact } from '../features/contacts/contactsSlice';
 import './EditContactModal.css';
 
 interface EditContactModalProps {
@@ -18,7 +18,8 @@ const EditContactModal: React.FC<EditContactModalProps> = ({ contact, onClose })
     name: contact.name,
     phone: contact.phone,
     email: contact.email,
-    tags: contact.tags.join(', ')
+    tags: contact.tags.join(', '),
+    lastInteraction: contact.lastInteraction
   });
   const [error, setError] = useState<string | null>(null);
   const [isUpdating, setIsUpdating] = useState(false);
@@ -29,7 +30,8 @@ const EditContactModal: React.FC<EditContactModalProps> = ({ contact, onClose })
       name: contact.name,
       phone: contact.phone,
       email: contact.email,
-      tags: contact.tags.join(', ')
+      tags: contact.tags.join(', '),
+      lastInteraction: contact.lastInteraction
     });
   }, [contact]);
 
@@ -56,7 +58,8 @@ const EditContactModal: React.FC<EditContactModalProps> = ({ contact, onClose })
         name: formData.name,
         phone: formData.phone,
         email: formData.email,
-        tags
+        tags,
+        lastInteraction: formData.lastInteraction
       };
       
       const updatedContact = await contactsApi.updateContact(contact.id, updatedContactData);
@@ -79,6 +82,13 @@ const EditContactModal: React.FC<EditContactModalProps> = ({ contact, onClose })
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
+    });
+  };
+
+  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      lastInteraction: new Date(e.target.value).toISOString()
     });
   };
 
@@ -135,6 +145,18 @@ const EditContactModal: React.FC<EditContactModalProps> = ({ contact, onClose })
               placeholder="Теги (comma-separated, optional)"
               value={formData.tags}
               onChange={handleChange}
+              disabled={isUpdating}
+            />
+          </div>
+          
+          <div className="form-group">
+            <label htmlFor="lastInteraction">Последнее взаимодействие:</label>
+            <input
+              type="datetime-local"
+              id="lastInteraction"
+              name="Последнее взаимодействие"
+              value={new Date(formData.lastInteraction).toISOString().slice(0, 16)}  
+              onChange={handleDateChange}
               disabled={isUpdating}
             />
           </div>

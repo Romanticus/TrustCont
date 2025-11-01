@@ -102,7 +102,7 @@
 .modal-content {
   background: white;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   width: 100%;
   max-width: 500px;
   max-height: 90vh;
@@ -155,6 +155,22 @@
 
 .delete-btn:hover {
   background-color: #d32f2f;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 4px;
+  color: #333;
+  font-weight: 500;
+}
+
+.form-group input[type="datetime-local"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
 }
 
 @media (max-width: 480px) {
